@@ -25,30 +25,30 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 
-const routes:Routes = [
+const routes: Routes = [
   {
-    path:"",
+    path: "",
     component: AssignmentsComponent
   },
   {
-    path:"home",
+    path: "home",
     component: AssignmentsComponent
   },
   {
-    path:"add",
+    path: "add",
     component: AddAssignmentComponent
   },
   {
-    path:"assignment/:id",
+    path: "assignment/:id",
     component: AssignmentDetailComponent
   },
   {
-    path:"assignment/:id/edit",
+    path: "assignment/:id/edit",
     component: EditAssignmentComponent,
     canActivate: [AuthGuard]
   }
@@ -64,7 +64,8 @@ const routes:Routes = [
     EditAssignmentComponent
   ],
   imports: [
-    BrowserModule, FormsModule,
+    BrowserModule, 
+    FormsModule,
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule,

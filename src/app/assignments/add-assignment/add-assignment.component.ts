@@ -12,6 +12,10 @@ export class AddAssignmentComponent implements OnInit {
   // Champ de formulaire
   nomAssignment!: string;
   dateDeRendu!: Date;
+  auteur?: string;
+  matiere?: string;
+  note?: number;
+  remarque?: string;
 
   constructor(private assignmentsService:AssignmentsService, private router:Router) {}
 
@@ -28,6 +32,10 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.nom = this.nomAssignment;
     newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.rendu = false;
+    newAssignment.auteur = this.auteur; // TODO: Prochainement l'etudiant
+    newAssignment.matiere = this.matiere; 
+    newAssignment.note = this.note;
+    newAssignment.remarque = this.remarque; 
 
     this.assignmentsService.addAssignment(newAssignment)
     .subscribe(reponse => {

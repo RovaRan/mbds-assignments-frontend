@@ -1,4 +1,25 @@
 <form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
+
+  <!-- Auteur: Information sur l etudiant -->
+  <mat-form-field>
+    <input matInput placeholder="Etudiant" [(ngModel)]="auteur" name="auteur" required>
+  </mat-form-field>
+
+  <!-- Matiere: TODO: Recuperer la liste de la base et l'afficher en menu deroulante -->
+  <mat-form-field>
+    <input matInput placeholder="Matiere" [(ngModel)]="matiere" name="matiere" required>
+  </mat-form-field>
+
+  <!-- Note: Information sur l etudiant -->
+  <mat-form-field>
+    <input matInput placeholder="Note" [(ngModel)]="note" name="note" required>
+  </mat-form-field>
+
+  <!-- Remarque: du Professeur sur l'assignment -->
+  <mat-form-field>
+    <input matInput placeholder="Remarque" [(ngModel)]="remarque" name="remarque" required>
+  </mat-form-field>
+
   <mat-form-field>
     <input matInput placeholder="Nom de l'assignment" [(ngModel)]="nomAssignment" name="nom" required>
   </mat-form-field>

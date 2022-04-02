@@ -1,5 +1,6 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, Component, NgZone, OnInit, ViewChild} from '@angular/core';
+import { response } from 'express';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
@@ -75,8 +76,10 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
       // demander les données au service de gestion des assignments...
       this.assignmentsService.getAssignments(this.page, this.limit)
       .subscribe(reponse => {
-        console.log("données arrivées");
-        this.assignments = reponse.docs;
+        console.log("données arrivées", reponse);
+        console.table(reponse);
+        console.table(' id du premier element : ' + reponse[1].id );
+        this.assignments = reponse;
         this.page = reponse.page;
         this.limit=reponse.limit;
         this.totalPages=reponse.totalPages;

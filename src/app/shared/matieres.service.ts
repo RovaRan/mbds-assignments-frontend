@@ -1,0 +1,20 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { Matiere } from '../models/matiere.model';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class MatieresService {
+
+    url = "http://localhost:8010/api/matieres";
+
+    constructor(private http: HttpClient) {}
+
+    // Recupere la liste des matieres
+    getMatieres(): Observable<Matiere[]> {
+        return this.http.get<Matiere[]>(this.url)
+    }
+}

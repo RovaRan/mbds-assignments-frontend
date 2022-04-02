@@ -7,7 +7,10 @@
 
   <!-- Matiere: TODO: Recuperer la liste de la base et l'afficher en menu deroulante -->
   <mat-form-field>
-    <input matInput placeholder="Matiere" [(ngModel)]="matiere" name="matiere" required>
+    <mat-label>Matiere</mat-label>
+    <mat-select matNativeControl [(ngModel)]="matiere" name="matiere">
+      <mat-option  *ngFor="let mat of matieres" [value]="mat.nomMatiere">{{mat.nomMatiere}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <!-- Note: Information sur l etudiant -->

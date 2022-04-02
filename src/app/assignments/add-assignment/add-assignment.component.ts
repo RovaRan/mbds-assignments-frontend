@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Matiere } from 'src/app/models/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { MatieresService } from 'src/app/shared/matieres.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -16,10 +18,14 @@ export class AddAssignmentComponent implements OnInit {
   matiere?: string;
   note?: number;
   remarque?: string;
+  matieres: Matiere[] = [];
 
-  constructor(private assignmentsService:AssignmentsService, private router:Router) {}
+  constructor(private assignmentsService:AssignmentsService, private matieresService:MatieresService ,private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Recuperation de la liste des matieres
+    this.getMatieres();
+  }
 
   onSubmit() {
     if((!this.nomAssignment) || (!this.dateDeRendu)) return;
@@ -45,5 +51,10 @@ export class AddAssignmentComponent implements OnInit {
       // en gros, demander de naviguer vers /home
       this.router.navigate(["/home"]);
     })
+  }
+
+  // Recuperer la liste des matieres pour le dropdown
+  getMatieres() {
+    this.matieresService.getMatieres().subscribe((matieres) => { this.matieres = matieres })
   }
 }

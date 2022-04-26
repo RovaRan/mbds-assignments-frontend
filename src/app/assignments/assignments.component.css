@@ -26,9 +26,10 @@ table {
 }
 
 .example-viewport {
-  height: 400px;
-  width: 100%;
-  border: 1px solid black;
+  height: 600px;
+  width: 75%;
+  border: 1px solid rgb(194, 194, 194);
+  margin: 0 auto;
 }
 
 .example-item {

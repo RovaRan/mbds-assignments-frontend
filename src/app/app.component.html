@@ -1,3 +1,14 @@
+<main>
+  <div class="header">
+    <h1 class="main-title">
+      <nav>
+        <a routerLink="/home">{{titre}}</a>
+      </nav>
+    </h1>
+    <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle>
+    <br>
+  </div>
 
-<main-header></main-header>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+
+</main>

@@ -12,7 +12,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
@@ -30,7 +29,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
-import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes:Routes = [
   {
@@ -63,16 +62,14 @@ const routes:Routes = [
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent,
-    MainHeaderComponent
+    EditAssignmentComponent
   ],
   imports: [
     BrowserModule, FormsModule,
     BrowserAnimationsModule, MatButtonModule, MatIconModule, MatDividerModule,
-    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-    MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule, 
-    MatSelectModule,
-    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule
+    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+    MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule,
+    RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

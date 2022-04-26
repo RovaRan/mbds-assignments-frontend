@@ -1,10 +1,6 @@
 .form {
   display:flex;
   flex-direction: column;
-  margin:5px;
-
-  /* Mine */
-  width: 50%;
-  margin: auto;
+  margin: 0 auto;
+  width: 70%;
 }
-

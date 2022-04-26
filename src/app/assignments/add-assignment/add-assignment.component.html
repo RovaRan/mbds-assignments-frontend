@@ -1,30 +1,14 @@
 <form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
-
-  <!-- Auteur: Information sur l etudiant -->
-  <mat-form-field>
-    <input matInput placeholder="Etudiant" [(ngModel)]="auteur" name="auteur" required>
-  </mat-form-field>
-
-  <!-- Matiere: TODO: Recuperer la liste de la base et l'afficher en menu deroulante -->
-  <mat-form-field>
-    <mat-label>Matiere</mat-label>
-    <mat-select matNativeControl [(ngModel)]="matiere" name="matiere">
-      <mat-option  *ngFor="let mat of matieres" [value]="mat.nomMatiere">{{mat.nomMatiere}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <!-- Note: Information sur l etudiant -->
-  <mat-form-field>
-    <input matInput placeholder="Note" [(ngModel)]="note" name="note" required>
-  </mat-form-field>
-
-  <!-- Remarque: du Professeur sur l'assignment -->
-  <mat-form-field>
-    <input matInput placeholder="Remarque" [(ngModel)]="remarque" name="remarque" required>
-  </mat-form-field>
-
   <mat-form-field>
     <input matInput placeholder="Nom de l'assignment" [(ngModel)]="nomAssignment" name="nom" required>
+  </mat-form-field>
+
+   <!-- Matiere: TODO: Recuperer la liste de la base et l'afficher en menu deroulante -->
+   <mat-form-field>
+    <mat-label>Matiere</mat-label>
+    <mat-select matNativeControl [(ngModel)]="matiere" name="matiere">
+      <mat-option  *ngFor="let mat of matieres" [value]="mat.nom">{{mat.nom}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -32,6 +16,16 @@
     <input matInput [matDatepicker]="picker" [(ngModel)]="dateDeRendu" name="date" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Etudiant -->
+  <mat-form-field>
+    <input matInput placeholder="Etudiant" [(ngModel)]="etudiant" name="etudiant" required>
+  </mat-form-field>
+
+  <!-- Note -->
+  <mat-form-field>
+    <input matInput placeholder="Note" [(ngModel)]="note" name="note" required>
   </mat-form-field>
 
     <button mat-stroked-button color="primary" [disabled]="((!this.nomAssignment) || (!this.dateDeRendu))">

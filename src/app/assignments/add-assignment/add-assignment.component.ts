@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Matiere } from 'src/app/models/matiere.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatieresService } from 'src/app/shared/matieres.service';
+import { UtilisateurService } from 'src/app/shared/utilisateur.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -14,17 +14,21 @@ export class AddAssignmentComponent implements OnInit {
   // Champ de formulaire
   nomAssignment!: string;
   dateDeRendu!: Date;
-  auteur?: string;
-  matiere?: string;
-  note?: number;
-  remarque?: string;
-  matieres: Matiere[] = [];
+  etudiant: string;
+  matiere: string;
+  note: number;
+  matieres: any;
+  
 
-  constructor(private assignmentsService:AssignmentsService, private matieresService:MatieresService ,private router:Router) {}
+  constructor(
+    private assignmentsService:AssignmentsService, 
+    private router:Router, 
+    private matieresService: MatieresService,
+    private utilisateurService: UtilisateurService) {}
 
   ngOnInit(): void {
-    // Recuperation de la liste des matieres
     this.getMatieres();
+    this.getUtilisateurs();
   }
 
   onSubmit() {
@@ -38,10 +42,9 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.nom = this.nomAssignment;
     newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.rendu = false;
-    newAssignment.auteur = this.auteur; // TODO: Prochainement l'etudiant
-    newAssignment.matiere = this.matiere; 
-    newAssignment.note = this.note;
-    newAssignment.remarque = this.remarque; 
+    newAssignment.etudiant = {};
+    newAssignment.matiere = {};
+    newAssignment.note = 0;
 
     this.assignmentsService.addAssignment(newAssignment)
     .subscribe(reponse => {
@@ -53,8 +56,20 @@ export class AddAssignmentComponent implements OnInit {
     })
   }
 
-  // Recuperer la liste des matieres pour le dropdown
+  // Recuperer la liste des matieres
   getMatieres() {
-    this.matieresService.getMatieres().subscribe((matieres) => { this.matieres = matieres })
+    this.matieresService.getMatieres()
+    .subscribe((matieres) => {
+      console.log("--------------", matieres.docs) 
+      this.matieres = matieres.docs
+    })
+  }
+
+  // Recuperer la liste des utilisateurs 
+  getUtilisateurs() {
+    this.utilisateurService.getUtilisateur()
+      .subscribe((value) => {
+        console.log("utilisateur ===> ", value.docs)
+      })
   }
 }

@@ -13,8 +13,13 @@ export class MatieresService {
 
     constructor(private http: HttpClient) {}
 
+    // // Recupere la liste des matieres
+    // getMatieres(): Observable<Matiere[]> {
+    //     return this.http.get<Matiere[]>(this.url)
+    // }
+
     // Recupere la liste des matieres
-    getMatieres(): Observable<Matiere[]> {
-        return this.http.get<Matiere[]>(this.url)
+    getMatieres(): Observable<any> {
+        return this.http.get<any>(this.url)
     }
 }

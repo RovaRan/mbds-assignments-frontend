@@ -18,9 +18,12 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <!-- Etudiant -->
+  <!-- Etudiants -->
   <mat-form-field>
-    <input matInput placeholder="Etudiant" [(ngModel)]="etudiant" name="etudiant" required>
+    <mat-label>Etudiants</mat-label>
+    <mat-select matNativeControl [(ngModel)]="etudiant" name="etudiant">
+      <mat-option  *ngFor="let etudiant of etudiants" [value]="etudiant.nom">{{etudiant.nom}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <!-- Note -->

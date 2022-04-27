@@ -17,7 +17,9 @@ export class AddAssignmentComponent implements OnInit {
   etudiant: string;
   matiere: string;
   note: number;
+
   matieres: any;
+  etudiants: any;
   
 
   constructor(
@@ -68,8 +70,9 @@ export class AddAssignmentComponent implements OnInit {
   // Recuperer la liste des utilisateurs 
   getUtilisateurs() {
     this.utilisateurService.getUtilisateur()
-      .subscribe((value) => {
-        console.log("utilisateur ===> ", value.docs)
+      .subscribe((users) => {
+        console.log("utilisateur ===> ", users.docs)
+        this.etudiants = users.docs // Ajouter un tri pour n avoir que les etudiants (non les professeurs)
       })
   }
 }

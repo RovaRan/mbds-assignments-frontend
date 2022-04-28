@@ -4,7 +4,7 @@ import { AssignmentsService } from "src/app/shared/assignments.service";
 import { AuthService } from "src/app/shared/auth.service";
 
 @Component({
-    selector: 'ass-footer',
+    selector: 'app-footer',
     templateUrl: './footer.component.html',
   })
 

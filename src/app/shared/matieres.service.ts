@@ -22,4 +22,8 @@ export class MatieresService {
     getMatieres(): Observable<any> {
         return this.http.get<any>(this.url)
     }
+
+    addAssignment(matiere:Matiere):Observable<any> {
+        return this.http.post<Matiere>(this.url, matiere);
+    }
 }

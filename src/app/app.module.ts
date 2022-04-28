@@ -30,6 +30,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
+import { AddMatiereComponent } from './components/matiere/add-matiere.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 const routes:Routes = [
   {
@@ -52,6 +54,10 @@ const routes:Routes = [
     path:"assignment/:id/edit",
     component: EditAssignmentComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path:"matiere/add",
+    component: AddMatiereComponent
   }
 ]
 @NgModule({
@@ -62,7 +68,8 @@ const routes:Routes = [
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    AddMatiereComponent
   ],
   imports: [
     BrowserModule, FormsModule,

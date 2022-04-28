@@ -1,30 +1,9 @@
 <main class="container">
-  <a routerLink="/add" class="ajouterBtn">
+  <!-- <a routerLink="/add" class="ajouterBtn">
     <button mat-flat-button color="accent">
       Ajouter Assignment
     </button>
-  </a>
-
-  <h2>Liste des devoirs :</h2>
-
-  <!-- <div class="barrePagination">
-    <p>Page courante : {{page}}, assignments visibles : {{pagingCounter}} - {{pagingCounter + limit-1}}, nbPages total {{totalPages}}</p>
-    <p>Nb assignments par page : <input type="range" min=5 max=100 [(ngModel)]="limit" (change)="getAssignments()">
-      {{limit}}
-    </p>
-
-    <button mat-flat-button color="primary" [disabled]="!hasPrevPage" (click)="premierePage()">Première page</button>
-    &nbsp;
-
-    <button mat-flat-button color="primary"
-            (click)="pagePrecedente()"
-            [disabled]="!hasPrevPage"
-    >Page précédente</button>
-    &nbsp;
-    <button mat-flat-button color="primary" (click)="pageSuivante()" [disabled]="!hasNextPage">Page suivante</button>
-    &nbsp;
-    <button mat-flat-button color="primary" (click)="dernierePage()" [disabled]="!hasNextPage">Dernière page</button>
-  </div> -->
+  </a> -->
 
 <cdk-virtual-scroll-viewport itemSize="150" class="example-viewport" #scroller>
   <mat-list *cdkVirtualFor="let assignment of assignments" class="example-item">

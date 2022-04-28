@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatieresService } from 'src/app/shared/matieres.service';
 import { UtilisateurService } from 'src/app/shared/utilisateur.service';
@@ -11,7 +12,6 @@ import { Assignment } from '../assignment.model';
   styleUrls: ['./add-assignment.component.css'],
 })
 export class AddAssignmentComponent implements OnInit {
-  // Champ de formulaire
   nomAssignment!: string;
   dateDeRendu!: Date;
   etudiant: string;
@@ -19,6 +19,7 @@ export class AddAssignmentComponent implements OnInit {
   note: number;
 
   matieres: any;
+  utilisateurs: any;
   etudiants: any;
   
 
@@ -44,9 +45,9 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.nom = this.nomAssignment;
     newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.rendu = false;
-    newAssignment.etudiant = {};
-    newAssignment.matiere = {};
-    newAssignment.note = 0;
+    newAssignment.etudiant = this.etudiant;
+    newAssignment.matiere = this.matiere;
+    newAssignment.note = this.note;
 
     this.assignmentsService.addAssignment(newAssignment)
     .subscribe(reponse => {
@@ -62,7 +63,6 @@ export class AddAssignmentComponent implements OnInit {
   getMatieres() {
     this.matieresService.getMatieres()
     .subscribe((matieres) => {
-      console.log("--------------", matieres.docs) 
       this.matieres = matieres.docs
     })
   }
@@ -71,8 +71,8 @@ export class AddAssignmentComponent implements OnInit {
   getUtilisateurs() {
     this.utilisateurService.getUtilisateur()
       .subscribe((users) => {
-        console.log("utilisateur ===> ", users.docs)
         this.etudiants = users.docs // Ajouter un tri pour n avoir que les etudiants (non les professeurs)
       })
   }
+
 }

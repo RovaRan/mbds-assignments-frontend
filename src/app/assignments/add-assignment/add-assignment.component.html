@@ -7,7 +7,7 @@
    <mat-form-field>
     <mat-label>Matiere</mat-label>
     <mat-select matNativeControl [(ngModel)]="matiere" name="matiere">
-      <mat-option  *ngFor="let mat of matieres" [value]="mat.nom">{{mat.nom}}</mat-option>
+      <mat-option  *ngFor="let mat of matieres" [value]="mat._id">{{mat.nom}}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -22,7 +22,7 @@
   <mat-form-field>
     <mat-label>Etudiants</mat-label>
     <mat-select matNativeControl [(ngModel)]="etudiant" name="etudiant">
-      <mat-option  *ngFor="let etudiant of etudiants" [value]="etudiant.nom">{{etudiant.nom}}</mat-option>
+      <mat-option  *ngFor="let etudiant of etudiants" [value]="etudiant._id">{{etudiant.nom}}</mat-option>
     </mat-select>
   </mat-form-field>
 

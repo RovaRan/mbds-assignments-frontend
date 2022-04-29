@@ -28,9 +28,9 @@ export class AddMatiereComponent implements OnInit {
 
     // Recuperer la liste des profs 
     getUtilisateurs() {
-      this.utilisateurService.getUtilisateur()
-        .subscribe((users) => {
-          this.profs = users.docs // Ajouter un tri pour n avoir que les professeurs
+      this.utilisateurService.getProfs()
+        .subscribe((users: any) => {
+          this.profs = users // Ajouter un tri pour n avoir que les professeurs
         })
     }
 

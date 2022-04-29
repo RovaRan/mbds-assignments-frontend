@@ -68,3 +68,7 @@ table {
 .app-footer > a {
 	text-decoration: none;
 }
+
+.form.edit {
+	margin-top: 20px;
+}

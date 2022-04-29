@@ -30,8 +30,9 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
-import { AddMatiereComponent } from './components/matiere/add-matiere.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { AddMatiereComponent } from './components/matiere/add-matiere/add-matiere.component';
+import { ListMatiereComponent } from './components/matiere/list-matiere/list-matiere.component';
+import { EditMatiereComponent } from './components/matiere/edit-matiere/edit-matiere.component';
 
 const routes:Routes = [
   {
@@ -58,6 +59,14 @@ const routes:Routes = [
   {
     path:"matiere/add",
     component: AddMatiereComponent
+  },
+  {
+    path:"matiere/list",
+    component: ListMatiereComponent
+  },
+  {
+    path:"matiere/edit/:id",
+    component: EditMatiereComponent
   }
 ]
 @NgModule({
@@ -69,7 +78,9 @@ const routes:Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
-    AddMatiereComponent
+    AddMatiereComponent,
+    ListMatiereComponent,
+    EditMatiereComponent
   ],
   imports: [
     BrowserModule, FormsModule,

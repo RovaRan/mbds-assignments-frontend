@@ -7,9 +7,14 @@
 
 <cdk-virtual-scroll-viewport itemSize="150" class="example-viewport" #scroller>
   <mat-list *cdkVirtualFor="let assignment of assignments" class="example-item">
-    <nav>
+    <nav class="assignments-list">
       <a href="/assignment/{{assignment.id}}">
-        <h3 mat-subheader>{{assignment.dateDeRendu | date:"dd/MM/yy"}}</h3>
+        
+        <h3 mat-subheader> 
+          <span *ngIf="assignment.rendu" class="rendu">Rendu</span>
+          <span *ngIf="!assignment.rendu" class="nonRendu">Non rendu</span>
+
+          {{assignment.dateDeRendu | date:"dd/MM/yy"}}</h3>
         <mat-list-item>
           <p *ngIf="assignment.rendu; else nonsoumis" appRendu>
             Devoir intitulé {{assignment.nom}}.

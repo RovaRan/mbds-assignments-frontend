@@ -13,9 +13,9 @@
     <!-- Menu -->
     <div class="menu">
       <ul>
-        <li><a routerLink="/" class="ajouterBtn">Page d'accueil</a></li>
-        <li><a routerLink="/add" class="ajouterBtn">Ajouter Assignment</a></li>
-        <li><a routerLink="/matiere/add" class="ajouterBtn">Ajouter Matiere</a></li>
+        <li><a routerLink="/" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}" class="ajouterBtn">Page d'accueil</a></li>
+        <li><a routerLink="/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Assignment</a></li>
+        <li><a routerLink="/matiere/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Matiere</a></li>
       </ul>
     </div>
     <!-- Container -->

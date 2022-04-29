@@ -9,7 +9,7 @@ import { AuthService } from './shared/auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  titre = 'Application de gestion des assignments...';
+  titre = 'Assignments';
 
   constructor(
     private authService: AuthService,

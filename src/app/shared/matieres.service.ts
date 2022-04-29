@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Matiere } from '../models/matiere.model';
@@ -15,7 +15,13 @@ export class MatieresService {
 
     // Recupere la liste des matieres
     getMatieres(): Observable<any> {
-        return this.http.get<any>(this.url)
+        return this.http.get<any>(this.url,
+        {
+            // headers: new HttpHeaders({
+            //     'Detailed': 'true'
+            // })
+        }
+        )
     }
 
     addMatiere(matiere:Matiere):Observable<any> {
@@ -24,5 +30,9 @@ export class MatieresService {
 
     getMatiere(id: string): Observable<any> {
         return this.http.get<any>(`${this.url}/${id}`)
+    }
+
+    update(matiere:Matiere) {
+        return this.http.put<Matiere>(this.url, matiere);
     }
 }

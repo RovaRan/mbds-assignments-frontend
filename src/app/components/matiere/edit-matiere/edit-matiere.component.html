@@ -7,11 +7,11 @@
     
     <!-- Ajout d un preselected value -->
     <mat-form-field>
-        <mat-label>Le professeur responsable</mat-label>
-        <mat-select matNativeControl [(value)]="prof" name="prof">
-          <mat-option  *ngFor="let prof of profs" [value]="prof.id">{{prof.nom}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-label>Etudiants</mat-label>
+      <mat-select [(ngModel)]="prof" name="prof">
+        <mat-option  *ngFor="let prof of profs" [value]="prof._id">{{prof.nom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   
       <button mat-stroked-button color="primary">
         Ajouter

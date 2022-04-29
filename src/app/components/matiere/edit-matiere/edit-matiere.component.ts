@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { matSelectAnimations } from '@angular/material/select';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Matiere } from 'src/app/models/matiere.model';
 import { Utilisateur } from 'src/app/models/utilisateur.model';
 import { MatieresService } from 'src/app/shared/matieres.service';
@@ -18,12 +17,13 @@ export class EditMatiereComponent implements OnInit {
     // Liste des professeurs
     profs: Utilisateur[];
 
-    matiere: any; // Normalement de type matiere
+    matiere: Matiere; // Normalement de type matiere
 
     constructor(
       private matiereService: MatieresService,
       private utilisateurService: UtilisateurService, 
-      private route: ActivatedRoute){}
+      private route: ActivatedRoute,
+      private router: Router){}
 
     ngOnInit(): void {
       this.getMatiere();
@@ -35,7 +35,18 @@ export class EditMatiereComponent implements OnInit {
     }
 
     onSubmit() {
-      console.log(' form submitted ')
+      // Récupération des valeurs saisies dans le formulaire
+      this.matiere.nom = this.nom;
+      this.matiere.prof = this.prof;
+
+      this.matiereService.update(this.matiere)
+        .subscribe(
+          response => console.log(response) // Confirmation de la mise à jour
+        )
+
+        // Redirection vers la liste des matieres
+        this.router.navigate(['/matiere/list']);
+
     }
 
     // Recuperer la liste des profs 

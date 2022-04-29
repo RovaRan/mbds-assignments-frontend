@@ -26,12 +26,6 @@ export class ListMatiereComponent implements OnInit {
     // Recuperer la liste des matières
     getMatieres() { 
       this.matiereService.getMatieres().subscribe((mats: any) => {
-        mats.docs.map(
-          (matiere: any) => {
-            matiere.nomProf = this.utilisateurService.getUtilisateurNom(matiere.prof)
-          }
-        )
-        console.log(mats.docs, 'ùùùùùùùùùùùùùùùùùùùùùùùùùùùùùù')
         this.matieres = mats.docs
       })
     }

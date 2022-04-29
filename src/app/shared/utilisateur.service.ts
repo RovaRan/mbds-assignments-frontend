@@ -23,14 +23,14 @@ export class UtilisateurService {
             .pipe( map( (val: any) => val.docs ))
     }
 
-    getUtilisateurByid(id: string) {
+    getUtilisateurById(id: string) {
         console.log(' id sent ', id)
         return this.http.get<any>(`${this.url}/${id}`)
     }
 
     getUtilisateurNom(id: string): string {
         let nom = 'ndrema'
-        this.getUtilisateurByid(id).subscribe(v => {
+        this.getUtilisateurById(id).subscribe(v => {
             console.log(v.nom) // Efa mety fa tsy mety lasa ary amle liste
             nom = v.nom
         })

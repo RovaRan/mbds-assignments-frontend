@@ -36,7 +36,6 @@ export class AddMatiereComponent implements OnInit {
     newMatiere.id = Math.round(Math.random()*10000000).toString();
     newMatiere.nom = this.nom;
     newMatiere.prof = this.prof;
-    console.log( this.prof , '  pojcpejzoepivhzpievip')
 
     console.log(newMatiere, ' matiere vao ')
 
@@ -46,7 +45,7 @@ export class AddMatiereComponent implements OnInit {
 
         this.snackbar.open(reponse.message, '', {  duration: 3000 } )
 
-      this.router.navigate(["/matiere/list"]);
+      this.router.navigate(["/matiere/list"]).then(() => window.location.reload());
     })
   }
 

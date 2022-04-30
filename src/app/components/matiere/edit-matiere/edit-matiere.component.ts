@@ -27,7 +27,7 @@ export class EditMatiereComponent implements OnInit {
 
     ngOnInit(): void {
       this.getMatiere();
-      this.getProfs(); // Recupérer la liste des profs pour la liste déroulante
+      this.getProfsList(); // Recupérer la liste des profs pour la liste déroulante
     }
 
     onSubmit() {
@@ -45,18 +45,19 @@ export class EditMatiereComponent implements OnInit {
 
     }
 
-    // Recuperer la liste des profs 
-    getProfs() {
-      this.utilisateurService.getProfs() // retourne la liste des utilisateurs
+    getProfsList() {
+      this.utilisateurService.getUtilisateur()
         .subscribe( (profs: any) => {
-          this.profs = profs
+          this.profs = this.getProfs(profs.docs);
         })
+    }
+
+    getProfs(users: Utilisateur[]): Utilisateur[] {
+      return users.filter( (user: Utilisateur) => user.type && user.type.toLowerCase() === 'professeur' ) 
     }
 
     // Recuperer la matiere a mettre a jour
     getMatiere() {
-      // on récupère l'id dans le snapshot passé par le routeur
-      // le "+" force l'id de type string en "number"
       const id = this.route.snapshot.params['id'];
   
       this.matiereService.getMatiere(id).subscribe((matiere) => {

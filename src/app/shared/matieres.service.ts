@@ -28,7 +28,9 @@ export class MatieresService {
         return this.http.get<any>(`${this.url}/${id}`)
     }
 
-    update(matiere: Matiere) {
+    update(matiere: Matiere): Observable<any> {
+        console.log("update matiere")
+        console.log(matiere);
         return this.http.put<Matiere>(this.url, matiere);
     }
 }

@@ -21,9 +21,10 @@
   <!-- Etudiants -->
   <mat-form-field>
     <mat-label>Etudiants</mat-label>
-    <mat-select matNativeControl [(ngModel)]="etudiant" name="etudiant">
+    <mat-select matNativeControl [(ngModel)]="etudiant" name="etudiant" multiple>
       <mat-option  *ngFor="let etudiant of etudiants" [value]="etudiant._id">{{etudiant.nom}}</mat-option>
     </mat-select>
+    
   </mat-form-field>
 
   <!-- Note -->

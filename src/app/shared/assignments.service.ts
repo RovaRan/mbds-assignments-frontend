@@ -66,6 +66,15 @@ export class AssignmentsService {
     //return of("Assignment ajouté");
   }
 
+  createAssigments(assignment:Assignment,matiereId:string):Observable<any> {
+    // this.assignments.push(assignment);
+ console.log(assignment);
+     this.loggingService.log(assignment.nom, "ajouté");
+ 
+     return this.http.post<Assignment>(this.baseUrl+"/matiere/"+matiereId+"/create-assignments", assignment);
+
+   }
+
   updateAssignment(assignment:Assignment):Observable<any> {
     this.loggingService.log(assignment.nom, "modifié");
 
@@ -81,6 +90,8 @@ export class AssignmentsService {
     //return of("Assignment supprimé");
     return this.http.delete(this.url + "/" + assignment._id);
   }
+
+
 
   peuplerBD() {
     bdInitialAssignments.forEach(a => {

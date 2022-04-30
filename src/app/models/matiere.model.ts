@@ -1,5 +1,7 @@
 export class Matiere {
-    id: string;
+    _id: string;
+    id:string;
     nom: string;
     prof: string;
+    etudiants:string[];
 }

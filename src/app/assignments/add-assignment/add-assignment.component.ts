@@ -6,6 +6,7 @@ import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatieresService } from 'src/app/shared/matieres.service';
 import { UtilisateurService } from 'src/app/shared/utilisateur.service';
 import { Assignment } from '../assignment.model';
+import { Matiere } from '../../models/matiere.model';
 
 @Component({
   selector: 'app-add-assignment',
@@ -15,21 +16,21 @@ import { Assignment } from '../assignment.model';
 export class AddAssignmentComponent implements OnInit {
   nomAssignment!: string;
   dateDeRendu!: Date;
-  etudiant: string;
+  etudiant: string[];
   matiere: string;
   note: number;
 
   matieres: any;
   utilisateurs: any;
   etudiants: any;
-  
+
 
   constructor(
-    private assignmentsService:AssignmentsService, 
-    private router:Router, 
+    private assignmentsService: AssignmentsService,
+    private router: Router,
     private matieresService: MatieresService,
     private utilisateurService: UtilisateurService,
-    private snackbar: MatSnackBar) {}
+    private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getMatieres();
@@ -37,41 +38,55 @@ export class AddAssignmentComponent implements OnInit {
   }
 
   onSubmit() {
-    if((!this.nomAssignment) || (!this.dateDeRendu)) return;
+    if ((!this.nomAssignment) || (!this.dateDeRendu)) return;
     console.log(
       'nom = ' + this.nomAssignment + ' date de rendu = ' + this.dateDeRendu
     );
 
+    
+
+    let existingMatiere = new Matiere();
+    existingMatiere._id = this.matiere;
+    existingMatiere.etudiants = this.etudiant;
     let newAssignment = new Assignment();
-    newAssignment.id = Math.round(Math.random()*10000000);
+    //newAssignment.id = Math.round(Math.random() * 10000000);
     newAssignment.nom = this.nomAssignment;
     newAssignment.dateDeRendu = this.dateDeRendu;
-    newAssignment.rendu = false;
-    newAssignment.etudiant = this.etudiant;
-    newAssignment.matiere = this.matiere;
-    newAssignment.note = this.note;
 
-    this.assignmentsService.addAssignment(newAssignment)
-    .subscribe(reponse => {
-      console.log(reponse.message);
-      this.snackbar.open(reponse.message, '', {  duration: 3000 } )
-      this.router.navigate(["/home"]);
-    })
+    this.matieresService.update(existingMatiere)
+      .subscribe(reponse => {
+        //console.log(reponse.message);
+        //this.snackbar.open(reponse.message, '', {  duration: 3000 } )
+      
+    //newAssignment.rendu = false;
+   // newAssignment.etudiant = this.etudiant;
+    //newAssignment.matiere = this.matiere;
+    //newAssignment.note = this.note;
+    //console.log("eto");
+ 
+    console.log(newAssignment);
+    //console.log("vita");
+        this.assignmentsService.createAssigments(newAssignment, reponse.result._id).subscribe(reponse => {
+          //console.log(reponse.message);
+          this.snackbar.open(reponse.message, '', { duration: 3000 })
+          this.router.navigate(["/home"]);
+        })
+      })
   }
 
   // Recuperer la liste des matieres
   getMatieres() {
     this.matieresService.getMatieres()
-    .subscribe((matieres) => {
-      this.matieres = matieres.docs
-    })
+      .subscribe((matieres) => {
+        this.matieres = matieres.docs
+      })
   }
 
   // Recuperer la liste des utilisateurs 
   getUtilisateurs() {
     this.utilisateurService.getUtilisateur()
       .subscribe((users) => {
-        this.etudiants = users.docs.filter( (user: Utilisateur) => user.type && user.type.toLowerCase() === 'etudiant' ) 
+        this.etudiants = users.docs.filter((user: Utilisateur) => user.type && user.type.toLowerCase() === 'etudiant')
       })
   }
 

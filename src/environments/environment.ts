@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl:"https://tpangularapi.herokuapp.com/api"
+  apiUrl:"https://tpangularapi.herokuapp.com/api",
+  //apiUrl:"http://localhost:8010/api"
 };
 
 /*

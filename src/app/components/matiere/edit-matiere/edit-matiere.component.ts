@@ -27,11 +27,7 @@ export class EditMatiereComponent implements OnInit {
 
     ngOnInit(): void {
       this.getMatiere();
-      console.log(' nom ', this.nom)
-
       this.getProfs(); // Recupérer la liste des profs pour la liste déroulante
-
-      // this.buildMatieresList(); // Utiliser le nom du prof a la place de l'id
     }
 
     onSubmit() {

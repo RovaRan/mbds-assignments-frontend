@@ -22,7 +22,7 @@ export class AssignmentDetailComponent implements OnInit {
   ngOnInit(): void {
     // on va récupérer l'id dans l'URL,
     // le + permet de forcer en number (au lieu de string)
-    const id = +this.route.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
     this.getAssignment(id);
   }
 

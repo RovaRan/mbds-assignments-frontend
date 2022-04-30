@@ -86,7 +86,7 @@ export class AddAssignmentComponent implements OnInit {
   getUtilisateurs() {
     this.utilisateurService.getUtilisateur()
       .subscribe((users) => {
-        this.etudiants = users.docs.filter((user: Utilisateur) => user.type && user.type.toLowerCase() === 'etudiant')
+        this.etudiants = users.filter((user: Utilisateur) => user.type && user.type.toLowerCase() === 'etudiant')
       })
   }
 

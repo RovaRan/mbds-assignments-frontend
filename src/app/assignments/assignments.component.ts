@@ -1,8 +1,9 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AfterViewInit, Component, NgZone, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { filter, map, pairwise, tap, throttleTime } from 'rxjs';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-assignments',
@@ -10,24 +11,25 @@ import { Assignment } from './assignment.model';
   styleUrls: ['./assignments.component.css'],
 })
 export class AssignmentsComponent implements OnInit, AfterViewInit {
-  assignments:Assignment[] = [];
+  assignments: Assignment[] = [];
   displayedColumns: string[] = ['id', 'nom', 'dateDeRendu', 'rendu'];
-
+  isAdmin: boolean;
+  userId:string;
   // pagination
-  page=1;
-  limit=10;
-  totalPages=0;
-  pagingCounter=0;
-  hasPrevPage=false;
-  hasNextPage=true;
-  prevPage= 1;
-  nextPage= 2;
+  page = 1;
+  limit = 10;
+  totalPages = 0;
+  pagingCounter = 0;
+  hasPrevPage = false;
+  hasNextPage = true;
+  prevPage = 1;
+  nextPage = 2;
 
-  constructor(private assignmentsService:AssignmentsService, private ngZone: NgZone) {}
+  constructor(private authService: AuthService, private assignmentsService: AssignmentsService, private ngZone: NgZone) { }
 
   @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
 
-  ngAfterViewInit():void{
+  ngAfterViewInit(): void {
     this.scroller.elementScrolled().pipe(
       tap(event => {
         //console.log(event);
@@ -68,49 +70,69 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   // appelé après le constructeur et AVANT l'affichage du composant
   ngOnInit(): void {
     console.log("Dans ngOnInit, appelé avant l'affichage");
+    this.userId = localStorage.getItem('userId')!;
     this.getAssignments();
+
+
   }
 
   getAssignments() {
-      // demander les données au service de gestion des assignments...
+    // demander les données au service de gestion des assignments...
+    this.authService.isAdminUser.subscribe((value) => this.isAdmin = value);
+    console.log(this.isAdmin);
+    if (this.isAdmin) {
       this.assignmentsService.getAssignments(this.page, this.limit)
-      .subscribe(reponse => {
-        console.log("données arrivées");
-        this.assignments = reponse.docs;
-        this.page = reponse.page;
-        this.limit=reponse.limit;
-        this.totalPages=reponse.totalPages;
-        this.pagingCounter=reponse.pagingCounter;
-        this.hasPrevPage=reponse.hasPrevPage;
-        this.hasNextPage=reponse.hasNextPage;
-        this.prevPage= reponse.prevPage;
-        this.nextPage= reponse.nextPage;
-      });
-
-      console.log("Après l'appel au service");
+        .subscribe(reponse => {
+          console.log("données arrivées");
+          this.assignments = reponse.docs;
+          this.page = reponse.page;
+          this.limit = reponse.limit;
+          this.totalPages = reponse.totalPages;
+          this.pagingCounter = reponse.pagingCounter;
+          this.hasPrevPage = reponse.hasPrevPage;
+          this.hasNextPage = reponse.hasNextPage;
+          this.prevPage = reponse.prevPage;
+          this.nextPage = reponse.nextPage;
+        });
+    } else {
+      this.assignmentsService.getAssignmentsByStudentId(this.userId,this.page, this.limit)
+        .subscribe(reponse => {
+          console.log("données arrivées");
+          this.assignments = reponse.docs;
+          this.page = reponse.page;
+          this.limit = reponse.limit;
+          this.totalPages = reponse.totalPages;
+          this.pagingCounter = reponse.pagingCounter;
+          this.hasPrevPage = reponse.hasPrevPage;
+          this.hasNextPage = reponse.hasNextPage;
+          this.prevPage = reponse.prevPage;
+          this.nextPage = reponse.nextPage;
+        });
+    }
+    console.log("Après l'appel au service");
   }
 
   getAssignmentsScrollInfini() {
     // demander les données au service de gestion des assignments...
     this.assignmentsService.getAssignments(this.page, this.limit)
-    .subscribe(reponse => {
-      console.log("données arrivées");
-      //this.assignments = reponse.docs;
-      // au lieu de remplacer les assignments chargés par les nouveaux, on les ajoute
-      this.assignments = this.assignments.concat(reponse.docs);
+      .subscribe(reponse => {
+        console.log("données arrivées");
+        //this.assignments = reponse.docs;
+        // au lieu de remplacer les assignments chargés par les nouveaux, on les ajoute
+        this.assignments = this.assignments.concat(reponse.docs);
 
-      this.page = reponse.page;
-      this.limit=reponse.limit;
-      this.totalPages=reponse.totalPages;
-      this.pagingCounter=reponse.pagingCounter;
-      this.hasPrevPage=reponse.hasPrevPage;
-      this.hasNextPage=reponse.hasNextPage;
-      this.prevPage= reponse.prevPage;
-      this.nextPage= reponse.nextPage;
-    });
+        this.page = reponse.page;
+        this.limit = reponse.limit;
+        this.totalPages = reponse.totalPages;
+        this.pagingCounter = reponse.pagingCounter;
+        this.hasPrevPage = reponse.hasPrevPage;
+        this.hasNextPage = reponse.hasNextPage;
+        this.prevPage = reponse.prevPage;
+        this.nextPage = reponse.nextPage;
+      });
 
     console.log("Après l'appel au service");
-}
+  }
 
   pagePrecedente() {
     this.page--;

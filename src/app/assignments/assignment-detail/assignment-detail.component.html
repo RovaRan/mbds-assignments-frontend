@@ -4,8 +4,8 @@
     <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date:"dd/MM/yy"}}</mat-card-subtitle>
     <div id="bottom">
       <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()" class="rendu">Rendu</mat-checkbox>
-      <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isLoggedIn()">EDIT</button>
-      <button mat-raised-button color="warn" (click)="onDelete()" [disabled]="!isLoggedIn()">DELETE</button>
+      <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!loggedIn">EDIT</button>
+      <button mat-raised-button color="warn" (click)="onDelete()" [disabled]="!loggedIn">DELETE</button>
     </div>
   </mat-card>
 </div>

@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   titre = 'Assignments';
 
   loggedIn: boolean;
+  isAdmin: boolean;
 
   subsription: Subscription;
 
@@ -25,15 +26,23 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.loggedIn = localStorage.getItem('isLoggedIn')==='true';
 
+    this.isAdmin = localStorage.getItem('isAdmin')==='true';
+console.log("admin ve? "+this.isAdmin);
      this.subsription = this.authService.isLoggedIn.subscribe(
       (value) => {
         this.loggedIn = value
       }
     )
+    this.authService.isAdminUser.subscribe(
+      (value) => {
+        this.isAdmin = value
+      }
+    )
+    console.log("admin ve 2? "+this.isAdmin);
   }
   
   onLoginLogout() {
-    if (this.authService.loggedIn) {
+    if (this.loggedIn) {
       console.log('je me deloggue');
       this.authService.logOut();
       // et je navigue vers la page d'accueil
@@ -45,7 +54,7 @@ export class AppComponent implements OnInit {
   }
 
   isLogged() {
-    return this.authService.loggedIn;
+    return this.loggedIn;
   }
 
   genererDonneesDeTest() {

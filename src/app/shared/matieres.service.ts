@@ -15,13 +15,7 @@ export class MatieresService {
 
     // Recupere la liste des matieres
     getMatieres(): Observable<any> {
-        return this.http.get<any>(this.url,
-        {
-            // headers: new HttpHeaders({
-            //     'Detailed': 'true'
-            // })
-        }
-        )
+        return this.http.get<any>(this.url);
     }
 
     addMatiere(matiere:Matiere):Observable<any> {

@@ -1,10 +1,10 @@
-<form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form ">
+<form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form">
     <mat-form-field>
-      <input [(ngModel)]="nom" matInput placeholder="Nom de la matière" name="nom" required>
+      <input [(ngModel)]="nom" matInput placeholder="Nom matière" name="nom" required>
     </mat-form-field>
     
     <mat-form-field>
-        <mat-label>Etudiants</mat-label>
+        <mat-label>Professeur</mat-label>
         <mat-select [(ngModel)]="prof" name="prof">
           <mat-option  *ngFor="let prof of profs" [value]="prof._id">{{prof.nom}}</mat-option>
         </mat-select>

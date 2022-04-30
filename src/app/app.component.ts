@@ -11,6 +11,8 @@ import { AuthService } from './shared/auth.service';
 export class AppComponent {
   titre = 'Assignments';
 
+  login = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,

@@ -1,5 +1,20 @@
 #bottom {
-  display:flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.assignment-name {
+  font-size: 17px;
+  color: hsl(210,8%,25%);
+}
+
+.assignment-card {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.rendu {
+  font-size: 14px;
 }

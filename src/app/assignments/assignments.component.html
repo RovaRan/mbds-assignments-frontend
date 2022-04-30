@@ -8,7 +8,7 @@
 <cdk-virtual-scroll-viewport itemSize="150" class="example-viewport" #scroller>
   <mat-list *cdkVirtualFor="let assignment of assignments" class="example-item">
     <nav class="assignments-list">
-      <a href="/assignment/{{assignment.id}}">
+      <a href="/assignment/{{assignment._id}}">
         
         <h3 mat-subheader> 
           <span *ngIf="assignment.rendu" class="rendu">Rendu</span>

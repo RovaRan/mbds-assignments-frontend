@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Matiere } from 'src/app/models/matiere.model';
 import { Utilisateur } from 'src/app/models/utilisateur.model';
 import { MatieresService } from 'src/app/shared/matieres.service';
@@ -17,7 +19,9 @@ export class AddMatiereComponent implements OnInit {
 
   constructor(
     private utilisateurService: UtilisateurService,
-    private matiereService: MatieresService) {
+    private matiereService: MatieresService,
+    private router: Router,
+    private snackbar: MatSnackBar) {
 
   }
 
@@ -26,10 +30,7 @@ export class AddMatiereComponent implements OnInit {
   }
 
   onSubmit() {
-    // if((!this.nomAssignment) || (!this.dateDeRendu)) return;
-    // console.log(
-    //   'nom = ' + this.nomAssignment + ' date de rendu = ' + this.dateDeRendu
-    // );
+    if((!this.nom) || (!this.prof)) return;
 
     let newMatiere = new Matiere();
     newMatiere.id = Math.round(Math.random()*10000000).toString();
@@ -43,7 +44,9 @@ export class AddMatiereComponent implements OnInit {
       .subscribe(reponse => {
         console.log(reponse.message);
 
-      // this.router.navigate(["/matiere/list"]);
+        this.snackbar.open(reponse.message, '', {  duration: 3000 } )
+
+      this.router.navigate(["/matiere/list"]);
     })
   }
 
@@ -51,26 +54,12 @@ export class AddMatiereComponent implements OnInit {
     getUtilisateurs() {
       this.utilisateurService.getProfs()
         .subscribe((users: any) => {
-          console.log(users)
-          this.profs = users // Ajouter un tri pour n avoir que les professeurs
+          this.profs = this.getProfs(users)
         })
-
-        // this.getProfs()
     }
 
-    getProfs(users: Utilisateur[]) {
-      let profs = [];
-      users.map( 
-        (user: Utilisateur) => {
-          if( user.type ) {
-            console.log('user manana type: ', user)
-            // if( user.type.localeCompare('Professeur') == 0 ) {
-            //   console.log(user, 'professeur iray indray ity')
-            //   profs.push(user)
-            // }
-          }
-        }
-      )
+    getProfs(users: Utilisateur[]): Utilisateur[] {
+      return users.filter( (user: Utilisateur) => user.type && user.type.toLowerCase() === 'professeur' ) 
     }
 
 }

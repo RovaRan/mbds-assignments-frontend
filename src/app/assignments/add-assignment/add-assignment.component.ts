@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Utilisateur } from 'src/app/models/utilisateur.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatieresService } from 'src/app/shared/matieres.service';
 import { UtilisateurService } from 'src/app/shared/utilisateur.service';
@@ -27,7 +28,8 @@ export class AddAssignmentComponent implements OnInit {
     private assignmentsService:AssignmentsService, 
     private router:Router, 
     private matieresService: MatieresService,
-    private utilisateurService: UtilisateurService) {}
+    private utilisateurService: UtilisateurService,
+    private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getMatieres();
@@ -52,9 +54,7 @@ export class AddAssignmentComponent implements OnInit {
     this.assignmentsService.addAssignment(newAssignment)
     .subscribe(reponse => {
       console.log(reponse.message);
-
-      // il va falloir naviguer (demander au router) d'afficher à nouveau la liste
-      // en gros, demander de naviguer vers /home
+      this.snackbar.open(reponse.message, '', {  duration: 3000 } )
       this.router.navigate(["/home"]);
     })
   }
@@ -71,7 +71,7 @@ export class AddAssignmentComponent implements OnInit {
   getUtilisateurs() {
     this.utilisateurService.getUtilisateur()
       .subscribe((users) => {
-        this.etudiants = users.docs // Ajouter un tri pour n avoir que les etudiants (non les professeurs)
+        this.etudiants = users.docs.filter( (user: Utilisateur) => user.type && user.type.toLowerCase() === 'etudiant' ) 
       })
   }
 

@@ -6,7 +6,9 @@
       </nav>
     </h1>
     <!-- <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle> -->
-    <a href="#seconnecter" class="login">Se connecter</a>
+    <div *ngIf="login; else elseBlock"><a href="#sedéconnecter"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon></a></div>
+    <ng-template #elseBlock><a href="#seconnecter"><mat-icon aria-hidden="false" aria-label="">login</mat-icon></a></ng-template>
+
   </div>
 
   <div class="container">
@@ -16,6 +18,7 @@
         <li><a routerLink="/" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}" class="ajouterBtn">Page d'accueil</a></li>
         <li><a routerLink="/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Assignment</a></li>
         <li><a routerLink="/matiere/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Matiere</a></li>
+        <li><a routerLink="/user/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Utilisateur</a></li>
         <li><a routerLink="/matiere/list" [routerLinkActive]="['is-active']" class="ajouterBtn">Lister Matiere</a></li>
       </ul>
     </div>

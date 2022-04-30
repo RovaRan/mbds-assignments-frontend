@@ -28,13 +28,14 @@ export class LoginComponent implements OnInit {
     this.authService.logIn(this.identifiantUser, motDePasse)
       .subscribe(reponse => {
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', reponse.user._id!);
         localStorage.setItem('token', reponse.accessToken);
-        this.authService.loggedIn=true;
-
         this.authService.isLoggedIn.next(true);
 
         if(reponse.user.type.toLowerCase()==="professeur"){
-          this.authService.isAdminUser=true;
+          //this.authService.isAdminUser=true;
+          localStorage.setItem('isAdmin', 'true');
+          this.authService.isAdminUser.next(true);
         }
         const component = this.route.snapshot.queryParamMap.get('returnUrl')?.toString();
         if(component!==undefined&&component.length>0){

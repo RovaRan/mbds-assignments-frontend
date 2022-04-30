@@ -30,12 +30,4 @@ export class UtilisateurService {
         return this.http.get<any>(`${this.url}/${id}`)
     }
 
-    getUtilisateurNom(id: string): string {
-        let nom = 'ndrema'
-        this.getUtilisateurById(id).subscribe(v => {
-            console.log(v.nom) // Efa mety fa tsy mety lasa ary amle liste
-            nom = v.nom
-        })
-        return nom;        
-    }
 }

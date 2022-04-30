@@ -11,16 +11,18 @@ import { Assignment } from '../assignment.model';
 })
 export class AssignmentDetailComponent implements OnInit {
   assignmentTransmis?: Assignment;
-
+  loggedIn: boolean;
+  
   constructor(
     private assignmentsService: AssignmentsService,
-    private authService:AuthService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
+    this.authService.isLoggedIn.subscribe((value) => this.loggedIn = value);
     this.getAssignment(id);
   }
 
@@ -66,7 +68,5 @@ export class AssignmentDetailComponent implements OnInit {
     });
   }
 
-  isLoggedIn() {
-    return this.authService.loggedIn;
-  }
+
 }

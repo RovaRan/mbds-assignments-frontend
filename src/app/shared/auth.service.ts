@@ -12,9 +12,10 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   isLoggedIn = new BehaviorSubject<boolean>(false);
+  isAdminUser = new BehaviorSubject<boolean>(false);
 
-  loggedIn: boolean;
-  isAdminUser=false;
+  //loggedIn: boolean;
+  isAdminUse=false;
   baseUrl = environment.apiUrl;
   logIn(login:string, password:string) {
     // normalement il faudrait envoyer une requête sur un web service, passer le login et le password
@@ -26,16 +27,16 @@ export class AuthService {
   }
 
   logOut() {
-    this.loggedIn = false;
+    //this.loggedIn = false;
     localStorage.setItem('isLoggedIn','false');    
     localStorage.removeItem('token'); 
     this.isLoggedIn.next(false);
   }
 
   isAdmin() {
-    console.log(this.isAdminUser);
+    //console.log(this.isAdminUser);
     let isUserAdmin = new Promise((resolve, reject) => {
-      resolve(this.isAdminUser);
+      resolve(this.isAdminUser.next(true));
     });
     //return this.loggedIn;
     return isUserAdmin;
@@ -43,7 +44,7 @@ export class AuthService {
 
   isLogged(){
     let isLogged = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
+      resolve(this.isLoggedIn.next(true));
     });
     //return this.loggedIn;
     return isLogged;

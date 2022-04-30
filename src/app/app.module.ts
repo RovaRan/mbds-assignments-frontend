@@ -25,7 +25,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
@@ -34,40 +34,66 @@ import { AddMatiereComponent } from './components/matiere/add-matiere/add-matier
 import { ListMatiereComponent } from './components/matiere/list-matiere/list-matiere.component';
 import { EditMatiereComponent } from './components/matiere/edit-matiere/edit-matiere.component';
 
-const routes:Routes = [
+import { UsersComponent } from './users/users.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { LoginComponent } from './login/login.component';
+const routes: Routes = [
   {
-    path:"",
+    path: "",
     component: AssignmentsComponent
   },
   {
-    path:"home",
+    path: "home",
     component: AssignmentsComponent
   },
   {
-    path:"add",
+    path: "add",
     component: AddAssignmentComponent
   },
   {
-    path:"assignment/:id",
+    path: "assignment/:id",
     component: AssignmentDetailComponent
   },
   {
-    path:"assignment/:id/edit",
+    path: "assignment/:id/edit",
     component: EditAssignmentComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:"matiere/add",
+    path: "users",
+    component: UsersComponent
+  },
+  {
+    path: "user/add",
+    component: AddUserComponent
+  },
+  {
+    path: "user/login",
+    component: LoginComponent
+
+  },
+  {
+    path: "matiere/add",
     component: AddMatiereComponent
   },
   {
-    path:"matiere/list",
+    path: "matiere/list",
     component: ListMatiereComponent
   },
   {
-    path:"matiere/edit/:id",
+    path: "matiere/edit/:id",
     component: EditMatiereComponent
   }
+  /*,
+  {
+    path: "user/:id",
+    component: AssignmentDetailComponent
+  },
+  {
+    path: "user/:id/edit",
+    component: EditAssignmentComponent,
+    canActivate: [AuthGuard]
+  }*/
 ]
 @NgModule({
   declarations: [
@@ -78,6 +104,9 @@ const routes:Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
+    UsersComponent,
+    AddUserComponent,
+    LoginComponent,
     AddMatiereComponent,
     ListMatiereComponent,
     EditMatiereComponent

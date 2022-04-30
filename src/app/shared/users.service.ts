@@ -38,7 +38,7 @@ export class UsersService {
     return this.http.get<User>(`${this.url}/${id}`)
       .pipe(
         map(a => {
-          a.nom = a.nom + " MODIFIE PAR UN MAP AVANT DE L'ENVOYER AU COMPOSANT D'AFFICHAGE";
+          a.nom = a.nom;
           return a;
         }),
         tap(a => {

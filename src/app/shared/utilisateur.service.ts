@@ -27,7 +27,6 @@ export class UtilisateurService {
     }
 
     getUtilisateurById(id: string) {
-        console.log(' id sent ', id)
         return this.http.get<any>(`${this.url}/${id}`)
     }
 

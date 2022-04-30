@@ -38,6 +38,9 @@ import { EditMatiereComponent } from './components/matiere/edit-matiere/edit-mat
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { LoginComponent } from './login/login.component';
+import { TokenInterceptor } from './provider/interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 const routes: Routes = [
   {
     path: "",
@@ -121,7 +124,9 @@ const routes: Routes = [
     MatSnackBarModule
     
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

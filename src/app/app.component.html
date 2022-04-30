@@ -5,10 +5,30 @@
         <a routerLink="/home">{{titre}}</a>
       </nav>
     </h1>
-    <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle>
-    <br>
+    <!-- <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle> -->
+    <a href="#seconnecter" class="login">Se connecter</a>
   </div>
 
-  <router-outlet></router-outlet>
+  <div class="container">
+    <!-- Menu -->
+    <div class="menu">
+      <ul>
+        <li><a routerLink="/" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}" class="ajouterBtn">Page d'accueil</a></li>
+        <li><a routerLink="/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Assignment</a></li>
+        <li><a routerLink="/matiere/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Matiere</a></li>
+        <li><a routerLink="/matiere/list" [routerLinkActive]="['is-active']" class="ajouterBtn">Lister Matiere</a></li>
+      </ul>
+    </div>
+    <!-- Container -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 
 </main>
+
+<footer class="app-footer">
+  <div>Footer 1 !</div>
+  <div>Footer 2 !</div>
+  <div>Footer 3 !</div>
+</footer>

@@ -1,0 +1,20 @@
+
+<form ngForm #assignmentForm (submit)="onSubmit(); assignmentForm.reset()" class="form edit">
+    <mat-form-field>
+        <!-- Recuperer le nom de la matiere a modifier -->
+      <input matInput placeholder="Nom de la matière" name="nom" [(ngModel)]="nom" required>
+    </mat-form-field>
+    
+    <!-- Ajout d un preselected value -->
+    <mat-form-field>
+      <mat-label>Etudiants</mat-label>
+      <mat-select [(ngModel)]="prof" name="prof">
+        <mat-option  *ngFor="let prof of profs" [value]="prof._id">{{prof.nom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+      <button mat-stroked-button color="primary">
+        Ajouter
+      </button>
+  </form>
+  

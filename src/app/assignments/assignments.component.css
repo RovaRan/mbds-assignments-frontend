@@ -1,11 +1,19 @@
 .rendu {
-  color:green;
+  color:rgb(255, 255, 255);
+  background-color: rgb(42, 207, 78);
+  width: 50px;
+  border-radius: 3px;
+  padding: 2px;
+  margin-right: 10px;
 }
 
 .nonRendu {
-  color:red;
-  background-color: yellow;
-  border: 2px dashed orange;
+  width: 70px;
+  border-radius: 3px;
+  padding: 2px;
+  color:rgb(255, 255, 255);
+  background-color: rgb(216, 121, 121);
+  margin-right: 10px;
 }
 
 .container {
@@ -26,12 +34,16 @@ table {
 }
 
 .example-viewport {
-  height: 600px;
+  height: 75vh;
   width: 75%;
-  border: 1px solid rgb(194, 194, 194);
+  border: 1px solid rgb(226, 226, 226);
   margin: 0 auto;
 }
 
 .example-item {
-  height: 150px;
+  height: 100px;
+}
+
+.assignments-list > a {
+  text-decoration: none;
 }

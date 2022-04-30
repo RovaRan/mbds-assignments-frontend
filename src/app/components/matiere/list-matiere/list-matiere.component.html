@@ -1,0 +1,25 @@
+<table mat-table [dataSource]="matieres" class="mat-elevation-z8 list-matiere">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> prof </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prof">
+      <th mat-header-cell *matHeaderCellDef> Professeur </th>
+      <td mat-cell *matCellDef="let element"> {{element.nomProf}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="modifier">
+      <th mat-header-cell *matHeaderCellDef> Modifier </th>
+      <td mat-cell *matCellDef="let element"> <a routerLink="/matiere/edit/{{element._id}}"> <mat-icon aria-hidden="false" aria-label="Example home icon">folder</mat-icon> </a> </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>
+

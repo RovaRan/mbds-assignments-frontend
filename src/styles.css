@@ -46,3 +46,29 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* Formulaires */
+.form {
+	display:flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 70%;
+  }
+  
+.app-footer {
+	background-color: #232629;
+	color: rgb(211, 211, 211);
+	height: 100px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 15px;
+}
+
+.app-footer > a {
+	text-decoration: none;
+}
+
+.form.edit {
+	margin-top: 20px;
+}

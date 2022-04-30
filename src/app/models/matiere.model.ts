@@ -1,4 +1,5 @@
-export interface Matiere {
+export class Matiere {
     id: string;
-    nomMatiere: string;
+    nom: string;
+    prof: string;
 }

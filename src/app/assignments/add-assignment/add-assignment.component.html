@@ -5,14 +5,14 @@
 
    <!-- Matiere: TODO: Recuperer la liste de la base et l'afficher en menu deroulante -->
    <mat-form-field>
-    <mat-label>Matiere</mat-label>
+    <mat-label>Matière</mat-label>
     <mat-select matNativeControl [(ngModel)]="matiere" name="matiere">
-      <mat-option  *ngFor="let mat of matieres" [value]="mat.nom">{{mat.nom}}</mat-option>
+      <mat-option  *ngFor="let mat of matieres" [value]="mat._id">{{mat.nom}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
+    <mat-label>Choisissez une date</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="dateDeRendu" name="date" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -22,7 +22,7 @@
   <mat-form-field>
     <mat-label>Etudiants</mat-label>
     <mat-select matNativeControl [(ngModel)]="etudiant" name="etudiant">
-      <mat-option  *ngFor="let etudiant of etudiants" [value]="etudiant.nom">{{etudiant.nom}}</mat-option>
+      <mat-option  *ngFor="let etudiant of etudiants" [value]="etudiant._id">{{etudiant.nom}}</mat-option>
     </mat-select>
   </mat-form-field>
 

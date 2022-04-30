@@ -9,7 +9,8 @@ import { Observable } from 'rxjs/internal/Observable';
 
 export class UtilisateurService {
 
-    url = "http://localhost:8010/api/users";
+    // url = "http://localhost:8010/api/users";
+    url= "https://tpangularapi.herokuapp.com/api/users";
 
     constructor(private http: HttpClient) {}
 

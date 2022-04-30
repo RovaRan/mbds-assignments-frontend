@@ -9,7 +9,9 @@ import { FullUser } from '../models/user.model';
 })
 export class AuthService {
   loggedIn = false;
-  baseUrl = "http://localhost:8010/api";
+  // baseUrl = "http://localhost:8010/api";
+  baseUrl = "https://tpangularapi.herokuapp.com/api";
+
   logIn(login:string, password:string) {
     // normalement il faudrait envoyer une requête sur un web service, passer le login et le password
     // et recevoir un token d'authentification, etc. etc.

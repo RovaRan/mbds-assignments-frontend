@@ -18,9 +18,9 @@ export class UsersService {
 
   }
 
-  baseUrl = "http://localhost:8010/api";
-  url = "http://localhost:8010/api/users";
-  //url= "https://tpangularapi.herokuapp.com/api/assignments";
+  baseUrl = "https://tpangularapi.herokuapp.com/api";
+  // url = "http://localhost:8010/api/users";
+  url= "https://tpangularapi.herokuapp.com/api/users";
 
   getUsers(page: number, limit: number): Observable<any> {
     // en réalité, bientôt au lieu de renvoyer un tableau codé en dur,

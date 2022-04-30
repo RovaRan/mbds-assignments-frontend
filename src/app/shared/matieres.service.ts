@@ -9,7 +9,8 @@ import { Matiere } from '../models/matiere.model';
 
 export class MatieresService {
 
-    url = "http://localhost:8010/api/matieres";
+    // url = "http://localhost:8010/api/matieres";
+    url = "https://tpangularapi.herokuapp.com/api/matieres";
 
     constructor(private http: HttpClient) {}
 

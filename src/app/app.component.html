@@ -4,11 +4,7 @@
         <a routerLink="/home">{{titre}}</a>
       </nav>
     </h1>
-    <!-- <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle> -->
     <div *ngIf="loggedIn"><button (click)="logout()"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon></button></div>
-
-
-
   </div>
 
   <div class="container">
@@ -23,7 +19,7 @@
       </ul>
     </div>
     <!-- Container -->
-    <div class="content">
+    <div [ngClass]="{'content': true, 'left-border': loggedIn}" class="content">
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -1,15 +1,18 @@
-<form ngForm #loginForm (submit)="login(); loginForm.reset()" class="form">
-  <mat-form-field>
-    <mat-label>Identifiant</mat-label>
-    <input matInput placeholder="Identifiant utilisateur" [(ngModel)]="identifiantUser" name="identifiant" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Mot de passe</mat-label>
-    <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="motDePasseUser" name="motDePasse" required>
-  </mat-form-field>
-
-
-  <button mat-stroked-button color="primary" [disabled]="((!this.identifiantUser) || (!this.motDePasseUser))">
-    Login
-  </button>
-</form>
+<div class="login-form">
+  <a href="#sedéconnecter" class="title"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon> Assignment</a>
+  <form ngForm #loginForm (submit)="login(); loginForm.reset()" class="form">
+    <mat-form-field>
+      <mat-label>Identifiant</mat-label>
+      <input matInput placeholder="Identifiant utilisateur" [(ngModel)]="identifiantUser" name="identifiant" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="motDePasseUser" name="motDePasse" required>
+    </mat-form-field>
+  
+  
+    <button mat-stroked-button color="primary" [disabled]="((!this.identifiantUser) || (!this.motDePasseUser))">
+      Login
+    </button>
+  </form>
+</div>

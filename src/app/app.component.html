@@ -1,4 +1,8 @@
-<main>
+<div *ngIf="login; else mainContainer">
+  <app-login></app-login>
+</div>
+
+<ng-template #mainContainer>
   <div class="header">
     <h1 class="main-title">
       <nav>
@@ -28,10 +32,15 @@
     </div>
   </div>
 
-</main>
+</ng-template>
 
 <footer class="app-footer">
-  <div>Footer 1 !</div>
-  <div>Footer 2 !</div>
-  <div>Footer 3 !</div>
+  <div>Assignment</div>
+  <div>
+    <ul>
+      <li>RAJOSIARISAONA Iaina Harilanto</li>
+      <li>RANAIVO Rovanirina Nandrianina</li>
+    </ul>
+  </div>
+  <div>MBDS2122</div>
 </footer>

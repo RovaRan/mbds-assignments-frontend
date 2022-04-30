@@ -3,10 +3,11 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, Htt
 import { Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const userToken = localStorage.getItem('token');
     let modifiedReq: HttpRequest<any>;
@@ -23,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
       (err: any) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            //const ;
+            this.authService.isLoggedIn.next(false);
             this.router.navigate(['/user/login'], { queryParams: { returnUrl:this.router.url } });
             return;
           }

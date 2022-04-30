@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AssignmentsService } from './shared/assignments.service';
 import { AuthService } from './shared/auth.service';
 
@@ -13,6 +14,8 @@ export class AppComponent implements OnInit {
 
   loggedIn: boolean;
 
+  subsription: Subscription;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -22,7 +25,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.loggedIn = localStorage.getItem('isLoggedIn')==='true';
 
-    this.authService.isLoggedIn.subscribe(
+     this.subsription = this.authService.isLoggedIn.subscribe(
       (value) => {
         this.loggedIn = value
       }

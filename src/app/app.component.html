@@ -1,30 +1,24 @@
-<div *ngIf="login; else mainContainer">
-  <app-login></app-login>
-</div>
-
-<ng-template #mainContainer>
-  <div class="header">
+ <div class="header">
     <h1 class="main-title">
       <nav>
         <a routerLink="/home">{{titre}}</a>
       </nav>
     </h1>
     <!-- <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle> -->
-    <div *ngIf="login; else elseBlock">
-      <a href="#sedéconnecter"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon></a></div>
+    <div *ngIf="loggedIn; else elseBlock"><a href="#sedéconnecter"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon></a></div>
     <ng-template #elseBlock><a href="#seconnecter"><mat-icon aria-hidden="false" aria-label="">login</mat-icon></a></ng-template>
 
   </div>
 
   <div class="container">
     <!-- Menu -->
-    <div class="menu">
+    <div class="menu" *ngIf="loggedIn">
       <ul>
         <li><a routerLink="/" [routerLinkActive]="['is-active']" [routerLinkActiveOptions]="{exact: true}" class="ajouterBtn">Page d'accueil</a></li>
         <li><a routerLink="/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Assignment</a></li>
-        <li><a routerLink="/matiere/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Matiere</a></li>
+        <li><a routerLink="/matiere/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Matière</a></li>
         <li><a routerLink="/user/add" [routerLinkActive]="['is-active']" class="ajouterBtn">Ajouter Utilisateur</a></li>
-        <li><a routerLink="/matiere/list" [routerLinkActive]="['is-active']" class="ajouterBtn">Lister Matiere</a></li>
+        <li><a routerLink="/matiere/list" [routerLinkActive]="['is-active']" class="ajouterBtn">Lister Matière</a></li>
       </ul>
     </div>
     <!-- Container -->
@@ -33,7 +27,6 @@
     </div>
   </div>
 
-</ng-template>
 
 <footer class="app-footer">
   <div>Assignment</div>

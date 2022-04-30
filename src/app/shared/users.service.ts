@@ -4,7 +4,8 @@ import { catchError, filter, forkJoin, map, Observable, of, pairwise, tap } from
 import { User } from '../models/user.model';
 import { FullUser } from '../models/user.model';
 import { LoggingService } from './logging.service';
-import { bdInitialAssignments } from './data';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class UsersService {
 
   }
 
-  baseUrl = "http://localhost:8010/api";
-  url = "http://localhost:8010/api/users";
+  baseUrl = environment.apiUrl;
+    url = this.baseUrl + "/users";
   //url= "https://tpangularapi.herokuapp.com/api/assignments";
 
   getUsers(page: number, limit: number): Observable<any> {

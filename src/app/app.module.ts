@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -109,7 +110,7 @@ const routes: Routes = [
     LoginComponent,
     AddMatiereComponent,
     ListMatiereComponent,
-    EditMatiereComponent
+    EditMatiereComponent,
   ],
   imports: [
     BrowserModule, FormsModule,
@@ -117,6 +118,8 @@ const routes: Routes = [
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule,
     MatListModule, MatCardModule, MatCheckboxModule, MatSlideToggleModule, MatTableModule,
     RouterModule.forRoot(routes), HttpClientModule, ScrollingModule,
+    MatSnackBarModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

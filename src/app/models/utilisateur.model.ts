@@ -3,6 +3,6 @@ export class Utilisateur {
     _id:number;
     nom!:string;
     photoUrl!:Date;
-    type!:boolean;
+    type!:string;
   }
   

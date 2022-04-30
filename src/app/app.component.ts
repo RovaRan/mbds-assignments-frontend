@@ -20,7 +20,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggedIn = this.authService.loggedIn;
+    this.loggedIn = localStorage.getItem('isLoggedIn')==='true';
+
+    this.authService.isLoggedIn.subscribe(
+      (value) => {
+        this.loggedIn = value
+      }
+    )
   }
   
   onLoginLogout() {
@@ -50,5 +56,11 @@ export class AppComponent implements OnInit {
       // Marche plus avec la dernière version d’angular
       this.router.navigate(['/home'], { replaceUrl: true });
     });
+  }
+
+  logout() {
+    this.authService.logOut();
+
+    this.router.navigate(['/user/login'], { replaceUrl: true });
   }
 }

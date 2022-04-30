@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', reponse.accessToken);
         this.authService.loggedIn=true;
+
+        this.authService.isLoggedIn.next(true);
+
         if(reponse.user.type.toLowerCase()==="professeur"){
           this.authService.isAdminUser=true;
         }

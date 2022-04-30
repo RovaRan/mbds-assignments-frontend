@@ -3,13 +3,17 @@ import { LoggingService } from './logging.service';
 import { Injectable } from '@angular/core';
 import { UserLogin } from '../models/user.model';
 import { environment } from '../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  loggedIn = false;
+
+  isLoggedIn = new BehaviorSubject<boolean>(false);
+
+  loggedIn: boolean;
   isAdminUser=false;
   baseUrl = environment.apiUrl;
   logIn(login:string, password:string) {
@@ -25,6 +29,7 @@ export class AuthService {
     this.loggedIn = false;
     localStorage.setItem('isLoggedIn','false');    
     localStorage.removeItem('token'); 
+    this.isLoggedIn.next(false);
   }
 
   isAdmin() {

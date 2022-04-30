@@ -1,0 +1,36 @@
+<form ngForm #userForm (submit)="onSubmit(); userForm.reset()" class="form">
+  <mat-form-field>
+    <mat-label>Nom</mat-label>
+    <input matInput placeholder="Nom de l'utilisateur" [(ngModel)]="nomUser" name="nom" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Photo</mat-label>
+    <input matInput placeholder="Photo URL" [(ngModel)]="photoUser" name="photoUrl">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <select matNativeControl [(ngModel)]="typeUser" name="type" required>
+      <option value="" selected></option>
+      <option value="etudiant">Etudiant</option>
+      <option value="professeur">Professeur</option>
+    </select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Identifiant</mat-label>
+    <input matInput placeholder="Identifiant utilisateur" [(ngModel)]="identifiantUser" name="identifiant" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Mot de passe</mat-label>
+    <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="motDePasseUser" name="motDePasse" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Confirmer le Mot de passe</mat-label>
+    <input matInput type="password" placeholder="Confirmer le mot de passe" [(ngModel)]="confirmerMotDePasseUser"
+      name="confirmerMotDePasse" required>
+    <!--<mat-error *ngIf="this.motDePasseUser!=this.confirmerMotDePasseUser">Passwords don't match</mat-error>-->
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" [disabled]="((!this.nomUser) || (!this.typeUser))">
+    Créer utilisateur
+  </button>
+</form>

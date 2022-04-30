@@ -31,6 +31,9 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import { AuthGuard } from './shared/auth.guard';
 import { MatSelectModule } from '@angular/material/select';
 
+import {UsersComponent} from './users/users.component';
+import {AddUserComponent} from './users/add-user/add-user.component';
+import {LoginComponent} from './login/login.component';
 const routes:Routes = [
   {
     path:"",
@@ -52,7 +55,29 @@ const routes:Routes = [
     path:"assignment/:id/edit",
     component: EditAssignmentComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: "users",
+    component: UsersComponent
+  },
+  {
+    path: "user/add",
+    component: AddUserComponent
+  },
+  {
+    path: "user/login",
+    component: LoginComponent
   }
+  /*,
+  {
+    path: "user/:id",
+    component: AssignmentDetailComponent
+  },
+  {
+    path: "user/:id/edit",
+    component: EditAssignmentComponent,
+    canActivate: [AuthGuard]
+  }*/
 ]
 @NgModule({
   declarations: [
@@ -62,7 +87,10 @@ const routes:Routes = [
     NonRenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    UsersComponent,
+    AddUserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, FormsModule,

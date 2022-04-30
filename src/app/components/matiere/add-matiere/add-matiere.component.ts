@@ -37,8 +37,6 @@ export class AddMatiereComponent implements OnInit {
     newMatiere.nom = this.nom;
     newMatiere.prof = this.prof;
 
-    console.log(newMatiere, ' matiere vao ')
-
     this.matiereService.addMatiere(newMatiere)
       .subscribe(reponse => {
         console.log(reponse.message);

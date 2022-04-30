@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentsService } from './shared/assignments.service';
 import { AuthService } from './shared/auth.service';
@@ -8,10 +8,10 @@ import { AuthService } from './shared/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   titre = 'Assignments';
 
-  login = false;
+  loggedIn: boolean;
 
   constructor(
     private authService: AuthService,
@@ -19,6 +19,10 @@ export class AppComponent {
     private assignmentsService: AssignmentsService
   ) {}
 
+  ngOnInit(): void {
+    this.loggedIn = this.authService.loggedIn;
+  }
+  
   onLoginLogout() {
     if (this.authService.loggedIn) {
       console.log('je me deloggue');

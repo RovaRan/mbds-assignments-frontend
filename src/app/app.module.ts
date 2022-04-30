@@ -73,6 +73,10 @@ const routes: Routes = [
     component: AddUserComponent
   },
   {
+    path: "user/login",
+    component: LoginComponent
+  },
+  {
     path: "matiere/add",
     component: AddMatiereComponent
   },

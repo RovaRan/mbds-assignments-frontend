@@ -10,7 +10,7 @@
         </mat-select>
       </mat-form-field>
   
-      <button mat-stroked-button color="primary">
+      <button mat-stroked-button color="primary" [disabled]="((!this.nom) || (!this.prof))">
         Ajouter
       </button>
   </form>

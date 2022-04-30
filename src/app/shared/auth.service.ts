@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { LoggingService } from './logging.service';
 import { Injectable } from '@angular/core';
 import { UserLogin } from '../models/user.model';
-import { FullUser } from '../models/user.model';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   loggedIn = false;
-  // baseUrl = "http://localhost:8010/api";
-  baseUrl = "https://tpangularapi.herokuapp.com/api";
-
+  isAdminUser=false;
+  baseUrl = environment.apiUrl;
   logIn(login:string, password:string) {
     // normalement il faudrait envoyer une requête sur un web service, passer le login et le password
     // et recevoir un token d'authentification, etc. etc.
@@ -28,11 +28,21 @@ export class AuthService {
   }
 
   isAdmin() {
+    console.log(this.isAdminUser);
     let isUserAdmin = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
+      resolve(this.isAdminUser);
     });
     //return this.loggedIn;
     return isUserAdmin;
+  }
+
+  isLogged(){
+    let isLogged = new Promise((resolve, reject) => {
+      resolve(this.loggedIn);
+    });
+    //return this.loggedIn;
+    return isLogged;
+    //return {isAdmin:true,isLogged:true};
   }
 
   // isAdmin().then(admin => { if(admin) { console.log("L'utilisateur est administrateur"); }})

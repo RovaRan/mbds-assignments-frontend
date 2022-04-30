@@ -4,6 +4,7 @@ import { catchError, filter, forkJoin, map, Observable, of, pairwise, tap } from
 import { Assignment } from '../assignments/assignment.model';
 import { LoggingService } from './logging.service';
 import { bdInitialAssignments } from './data';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,9 @@ export class AssignmentsService {
 
   }
 
-
-  // url = "http://localhost:8010/api/assignments";
-  // url= "https://mbdsmadagascar2022api.herokuapp.com/api/assignments";
-  url = "https://tpangularapi.herokuapp.com/api/assignments";
+  baseUrl = environment.apiUrl;
+  url = this.baseUrl + "/assignments";
+  //url= "https://mbdsmadagascar2022api.herokuapp.com/api/assignments";
 
   getAssignments(page:number, limit:number):Observable<any> {
     // en réalité, bientôt au lieu de renvoyer un tableau codé en dur,

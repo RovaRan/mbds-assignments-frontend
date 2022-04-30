@@ -10,7 +10,8 @@
       </nav>
     </h1>
     <!-- <mat-slide-toggle (click)="onLoginLogout()">Login</mat-slide-toggle> -->
-    <div *ngIf="login; else elseBlock"><a href="#sedéconnecter"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon></a></div>
+    <div *ngIf="login; else elseBlock">
+      <a href="#sedéconnecter"><mat-icon aria-hidden="false" aria-label="">logout</mat-icon></a></div>
     <ng-template #elseBlock><a href="#seconnecter"><mat-icon aria-hidden="false" aria-label="">login</mat-icon></a></ng-template>
 
   </div>
